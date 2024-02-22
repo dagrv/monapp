@@ -19,7 +19,7 @@ export const UserItem = () => {
                             </Avatar>
 
                             <span className="text-start font-medium line-clamp-1">
-                                Adam{user?.fullName}&apos;s Page
+                                {user?.username}&apos;s Page
                             </span>
                         </div>
 
@@ -47,7 +47,7 @@ export const UserItem = () => {
 
                             <div className="space-y-1">
                                 <p className="text-md line-clamp-1">
-                                    Adam{user?.fullName}&apos;s Page
+                                    {user?.username}&apos;s Page
                                 </p>
                             </div>
                         </div>

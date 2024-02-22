@@ -1,9 +1,10 @@
 "use client";
 
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Cog } from "lucide-react";
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Cog, Plus } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 
 import { cn } from "@/lib/utils";
 import { UserItem } from "./user-item";
@@ -137,6 +138,11 @@ export const Navigation = () => {
 
                 <div className="mt-4">
                     <DocumentList />
+                    <Item 
+                        onClick={handleCreate}
+                        icon={Plus}
+                        label="Create a New Page"
+                    />
                 </div>
                 
                 <div

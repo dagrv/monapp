@@ -40,12 +40,12 @@ const DocumentsPage = () => {
             />
 
             <h2 className="text-lg font-medium">
-                Welcome to {user?.firstName}&apos;s Page
+                Welcome to {user?.username}&apos;s Page
             </h2>
             
             <Button onClick={onCreate} size="lg" className="text-white text-md bg-gradient-to-r from-green-700 via-green-600 to-green-600 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg px-10 py-5 text-center mb-2">
-                <PlusCircle className="h-5 w-5 mr-2" />
-                Create Note
+                {/* <PlusCircle className="h-5 w-5 mr-2" /> */}
+                Create
             </Button>
         </div>
     );

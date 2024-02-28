@@ -20,7 +20,7 @@ interface ItemProps {
     level?: number;
     onExpand?: () => void;
     label: string;
-    onClick: () => void;
+    onClick?: () => void;
     icon: LucideIcon
 }
 
@@ -94,7 +94,7 @@ export const Item = ({
             
             {!!id && (
                 <div role="button"
-                    className="h-full rounded-md hover:bg-neutral-300 dark:bg-neutral-600 mr-1"
+                    className="h-full rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-600 mr-1"
                     onClick={handleExpand}>
                         <ChevronIcon className="h-6 w-6 shrink-0 text-gray-500" />
                 </div>
@@ -114,7 +114,8 @@ export const Item = ({
                 {isSearch && (
                     <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5
                     font-mono text-[10px] font-medium text-gray-700 border-gray-400 shadow-md">
-                        <span className="text-xs">⌘</span>K
+                        <span className="text-xs dark:text-white">⌘</span>
+                        <span className="dark:text-white">K</span>
                     </kbd>
                 )}
 

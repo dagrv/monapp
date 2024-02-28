@@ -151,7 +151,7 @@ export const Navigation = () => {
                     />
 
                     <Popover>
-                        <PopoverTrigger className="w-full mt-4 text-red-500">
+                        <PopoverTrigger className="w-full mt-6 text-red-500">
                             <Item label="Trash" icon={Trash2} />
                         </PopoverTrigger>
 

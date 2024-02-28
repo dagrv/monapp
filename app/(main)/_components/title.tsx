@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useMutation } from "convex/react";
 
 import { Doc } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface TitleProps {
     initialData: Doc<"documents">;
@@ -27,7 +28,29 @@ export const Title = ({
         setTimeout(() => {
             inputRef.current?.focus();
             inputRef.current?.setSelectionRange(0, inputRef.current.value.length)
-        }, 0)
+        }, 0);
+    };
+
+    const disableInput = () => {
+        setIsEditing(false);
+    }
+
+    const onChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setTitle(event.target.value);
+        update({
+            id: initialData._id,
+            title: event.target.value || "Untitled"
+        });
+    };
+
+    const onKeyDown = (
+        event: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+        if (event.key === "Enter") {
+            disableInput();
+        }
     }
 
     return (
@@ -35,13 +58,20 @@ export const Title = ({
             {!!initialData.icon && <p>{initialData.icon}</p>}
 
             {isEditing ? (
-                <Input className="h-7 px-2 focus-visible:ring-transparent" />
+                <Input 
+                    ref={inputRef} 
+                    onClick={enableInput} 
+                    onBlur={disableInput}
+                    onChange={onChange}
+                    onKeyDown={onKeyDown}
+                    value={title}
+                    className="h-7 px-2 focus-visible:ring-transparent" />
             ) : (
                 <Button 
-                    onClick={() => {}}
-                    variant="ghost"
+                    onClick={enableInput}
+                    variant="default"
                     size="lg"
-                    className="font-normal h-auto p-3 w-64 text-lg">
+                    className="font-normal h-auto p-3">
 
                     <span className="truncate">{initialData?.title}</span>
                 </Button>
@@ -49,3 +79,9 @@ export const Title = ({
         </div>
     )
 }
+
+Title.Skeleton = function TitleSkeleton() {
+    return (
+        <Skeleton className="h-6 w-20 rounded-md" />
+    );
+};
